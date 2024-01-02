@@ -6,7 +6,7 @@
 /*   By: gabpicci <gabpicci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 17:10:40 by gabpicci          #+#    #+#             */
-/*   Updated: 2023/12/26 22:26:00 by gabpicci         ###   ########.fr       */
+/*   Updated: 2024/01/02 19:20:55 by gabpicci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,9 @@ void	child_cmd1(char **av, char **env, int *pipefd)
 	fd = open(av[1], O_RDONLY);
 	if	(fd < 0)
 		error_func();
-	dup2(pipefd[1], STDOUT_FILENO);
 	dup2(fd, STDIN_FILENO);
-	close(pipefd[1]);
+	dup2(pipefd[1], STDOUT_FILENO);
+	close(pipefd[0]);
 	prcss(av[2], env);
 	// close(fd);
 }
@@ -60,7 +60,7 @@ void	parent_cmd2(char **av, char **env, int *pipefd)
 		error_func();
 	dup2(fd, STDOUT_FILENO);
 	dup2(pipefd[0], STDIN_FILENO);
-	close(pipefd[0]);
+	close(pipefd[1]);
 	prcss(av[3], env);
 	// close(fd);
 }	
