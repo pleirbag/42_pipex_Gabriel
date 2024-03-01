@@ -6,7 +6,7 @@
 /*   By: gabpicci <gabpicci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 17:21:51 by gabpicci          #+#    #+#             */
-/*   Updated: 2023/12/26 21:58:33 by gabpicci         ###   ########.fr       */
+/*   Updated: 2024/03/01 21:49:30 by gabpicci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,24 @@ int	ft_strlen(char *str)
 {
 	int i;
 
+	i = 0;
 	while(str[i])
 		i++;
 	return (i);
 }
 
-void error_func(void)
+void error_func(int e)
 {
-	perror("error");
+	if (e == 0)
+		print_str("Incorrect number of parameters");
+	if (e == 1)
+		print_str("Invalid FD or error loading file");
+	if (e == 2)
+		perror("Error at command execution time");
+	if (e == 3)
+		print_str("Error at fork time");
+	if (e == 4)
+		print_str("Error: Couldnt find the command");
 	exit(EXIT_FAILURE);
 }
 
@@ -82,6 +92,6 @@ char	*access_path(char **env_path, char *cmd)
 			return(cmd_path);
 		free(cmd_path);
 	}
-	write(2, "Error, Command invalid\n", 24);
+	error_func(4);
 	exit(127);
 }
