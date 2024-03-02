@@ -6,7 +6,7 @@
 /*   By: gabpicci <gabpicci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 17:21:51 by gabpicci          #+#    #+#             */
-/*   Updated: 2024/03/01 21:49:30 by gabpicci         ###   ########.fr       */
+/*   Updated: 2024/03/02 18:33:02 by gabpicci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 
 int	ft_strlen(char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
-	while(str[i])
+	while (str[i])
 		i++;
 	return (i);
 }
 
-void error_func(int e)
+void	error_func(int e)
 {
 	if (e == 0)
 		print_str("Incorrect number of parameters");
@@ -37,7 +37,7 @@ void error_func(int e)
 	exit(EXIT_FAILURE);
 }
 
-char *str_concat(char *s1, char *s2)
+char	*str_concat(char *s1, char *s2)
 {
 	int		i;
 	int		j;
@@ -62,16 +62,12 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 
 	i = 0;
 	if (n == 0)
-	{
 		return (0);
-	}
 	while (s1[i] == s2[i] && s1[i] && i < n)
 	{
 		i++;
 		if (i == n)
-		{
 			return (0);
-		}
 	}
 	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 }
@@ -89,7 +85,7 @@ char	*access_path(char **env_path, char *cmd)
 		cmd_path = str_concat(temp, cmd);
 		free(temp);
 		if (access(cmd_path, F_OK) != -1)
-			return(cmd_path);
+			return (cmd_path);
 		free(cmd_path);
 	}
 	error_func(4);

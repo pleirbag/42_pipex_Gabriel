@@ -6,7 +6,7 @@
 /*   By: gabpicci <gabpicci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 13:47:23 by gabpicci          #+#    #+#             */
-/*   Updated: 2024/03/01 21:49:35 by gabpicci         ###   ########.fr       */
+/*   Updated: 2024/03/02 18:17:44 by gabpicci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	print_str(char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str[i])
@@ -24,10 +24,10 @@ void	print_str(char *str)
 
 int	detect_empty_argument(char **av)
 {
-	int i;
+	int	i;
 
 	i = 0;
-	while(i++ <= 3)
+	while (i++ <= 3)
 	{
 		if (av[i][0] == 0 || av[i][0] == 32)
 			return (0);
